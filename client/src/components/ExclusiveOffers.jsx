@@ -1,6 +1,6 @@
 import React from 'react'
 import Title from './Title'
-import { assets } from '../assets/assets'
+import { assets, exclusiveOffers } from '../assets/assets'
 
 const ExclusiveOffers = () => {
   return (
@@ -15,7 +15,12 @@ const ExclusiveOffers = () => {
       </div>
 
       <div>
+        {exclusiveOffers.map((item) => (
+            <div key={item._id} className='group relative flex flex-col items-start justify-between gap-1 pt-12 md:pt-18
+            rounded-xl text-white bg-no-repeat bg-cover bg-center'>
 
+            </div>
+        ))}
       </div>
     </div>
   )
