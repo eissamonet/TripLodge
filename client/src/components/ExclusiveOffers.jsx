@@ -8,7 +8,7 @@ const ExclusiveOffers = () => {
       <div className='flex flex-col md:flex-row items-center justify-between gap-10 w-full'>
         <Title align='left' title='Exclusive Ofers' subTitle='Take advantage of pur limited-time offers and special packages to enhance your stat and
         create unforgettable memories.' />
-        <button>
+        <button className='group flex items-center gap-2 font-medium cursor-pointer max-md:mt-12'>
             View All Offers
             <img src={assets.arrowIcon} alt="arrow-icon" className='group-hover:translate-x-1 transition-all' />
         </button>
