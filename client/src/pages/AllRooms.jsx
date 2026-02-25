@@ -6,8 +6,8 @@ const AllRooms = () => {
     xl:px-32'>
       <div>
         <div>
-          <h1>Hotel Rooms</h1>
-          <p>Take advantage of our limited-time offers and special packages to enhance your stay and create unforgettable memories.</p>
+          <h1 className='font-playfair text-4xl md:text-[40px]'>Hotel Rooms</h1>
+          <p className='text-sm md:text-base text-gray-500/90 mt-2'>Take advantage of our limited-time offers and special packages to enhance your stay and create unforgettable memories.</p>
         </div>
       </div>
       {/*filters*/}
