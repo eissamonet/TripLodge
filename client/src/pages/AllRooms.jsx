@@ -34,12 +34,14 @@ const AllRooms = () => {
               {/* room amenities */}
               <div className='flex flex-wrap items-center mt-3 mb-6 gap-4'>
                 {room.amenities.map((item, index) => (
-                  <div>
+                  <div key={index} className='flex items-center gap-2 px-3 py-2 rounded-lg bg-[#F5F5FF]/70'>
                     <img src={facilityIcons[item]} alt={item} className='w-5 h-5' />
                     <p className='text-xs'>{item}</p>
                   </div>
                 ))}
               </div>
+              {/* room price per night */}
+              <p className='text-xl font-medium text-gray-700'>${room.pricePerNight} /night</p>
             </div>
           </div>
         ))}
