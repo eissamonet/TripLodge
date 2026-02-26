@@ -48,8 +48,14 @@ const AllRooms = () => {
 
       </div>
       {/*filters*/}
-      <div>
+      <div className='bg-white w-80 border border-gray-300 text-gray-600 max-lg:mb-8 lg:mt-16'>
 
+        <div>
+          <p>FILTERS</p>
+          <div>
+            <span>CLEAR</span>
+          </div>
+        </div>
       </div>
     </div>
   )
