@@ -51,9 +51,10 @@ const AllRooms = () => {
       <div className='bg-white w-80 border border-gray-300 text-gray-600 max-lg:mb-8 lg:mt-16'>
 
         <div>
-          <p>FILTERS</p>
-          <div>
-            <span>CLEAR</span>
+          <p className='text-base font-medium text-gray-800'>FILTERS</p>
+          <div className='text-xs cursor-pointer'>
+            <span className='lg:hidden'>HIDE</span>
+            <span className='hidden lg:block'>CLEAR</span>
           </div>
         </div>
       </div>
