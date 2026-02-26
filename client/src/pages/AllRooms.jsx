@@ -1,5 +1,5 @@
 import React from 'react'
-import { assets, roomsDummyData } from '../assets/assets'
+import { assets, facilityIcons, roomsDummyData } from '../assets/assets'
 import { useNavigate } from 'react-router-dom'
 import StarRating from '../components/StarRating';
 
@@ -30,6 +30,15 @@ const AllRooms = () => {
               <div className='flex items-center gap-1 text-gray-500 mt-2 text-sm'>
                 <img src={assets.locationIcon} alt='location-icon' />
                 <span>{room.hotel.address}</span>
+              </div>
+              {/* room amenities */}
+              <div className='flex flex-wrap items-center mt-3 mb-6 gap-4'>
+                {room.amenities.map((item, index) => (
+                  <div>
+                    <img src={facilityIcons[item]} alt={item} className='w-5 h-5' />
+                    <p className='text-xs'>{item}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
