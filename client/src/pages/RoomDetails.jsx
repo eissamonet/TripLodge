@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { roomsDummyData } from '../assets/assets';
+import { assets, roomsDummyData } from '../assets/assets';
 import StarRating from '../components/StarRating';
 
 const RoomDetails = () => {
@@ -23,10 +23,17 @@ const RoomDetails = () => {
         </h1>
         <p className='text-xs font-inter py-1.5 px-3 text-white bg-orange-500 rounded-full'>20% Off</p>
        </div>
+
        {/* room ratings */}
        <div className='flex items-center gap-1 mt-2'>
         <StarRating />
         <p className='ml-2'>200+ Reviews</p>
+       </div>
+
+       {/* room address */}
+       <div className='flex items-center gap-1 text-gray-500 mt-2'>
+        <img src={assets.locationIcon} alt='location-icon' />
+        <span>{room.hotel.address}</span>
        </div>
     </div>
   )
