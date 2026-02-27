@@ -103,8 +103,20 @@ const AllRooms = () => {
         <div className={`${openFilters ? 'h-auto' : 'h-0 lg:h-auto'} overflow-hidden transition-all duration-700`}>
           <div className='px-5 pt-5'>
             <p className='font-medium text-gray-800 pb-2'>Popular filters</p>
-            {roomTypes.map(()=>(
-              <CheckBox />
+            {roomTypes.map((room, index) => (
+              <CheckBox key={index} label={room} />
+            ))}
+          </div>
+          <div className='px-5 pt-5'>
+            <p className='font-medium text-gray-800 pb-2'>Price Range</p>
+            {priceRanges.map((range, index) => (
+              <CheckBox key={index} label={`$ ${range}`} />
+            ))}
+          </div>
+           <div className='px-5 pt-5'>
+            <p className='font-medium text-gray-800 pb-2'>Sort By</p>
+            {sortOptions.map((option, index) => (
+              <RadioButton key={index} label={option} />
             ))}
           </div>
 
