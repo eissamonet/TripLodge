@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { roomsDummyData } from '../assets/assets';
+import StarRating from '../components/StarRating';
 
 const RoomDetails = () => {
     const { id } = useParams();
@@ -21,6 +22,11 @@ const RoomDetails = () => {
             <span className='font-inter text-sm'>({room.roomType})</span>
         </h1>
         <p className='text-xs font-inter py-1.5 px-3 text-white bg-orange-500 rounded-full'>20% Off</p>
+       </div>
+       {/* room ratings */}
+       <div className='flex items-center gap-1 mt-2'>
+        <StarRating />
+        <p className='ml-2'>200+ Reviews</p>
        </div>
     </div>
   )
