@@ -52,8 +52,8 @@ const RoomDetails = () => {
 
        {/* room highlights */}
        <div className='flex flex-col md:flex-row md:justify-between mt-10'>
-        <div>
-           <h1 className='text-3xl md:text-4xl font-playfair'>Experiece Luxury Like Never Before!</h1>
+        <div className='flex flex-col'>
+           <h1 className='text-3xl md:text-4xl font-playfair'>Experience Luxury Like Never Before!</h1>
            <div className='flex flex-wrap items-center mt-3 mb-6 gap-4'>
             {room.amenities.map((item, index) => (
                 <div key={index} className='flex items-center gap-2 px-3 py-2 rounded-lg bg-gray-100'>
@@ -63,7 +63,9 @@ const RoomDetails = () => {
             ))}
            </div>
         </div>
-       </div>
+         {/* room price */}
+        <p className='text-2-xl font-medium'>${room.pricePerNight}/night</p>
+      </div>
 
 
     </div>
