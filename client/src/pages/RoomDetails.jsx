@@ -70,8 +70,15 @@ const RoomDetails = () => {
        {/* checkin checkout form */}
        <form className='flex flex-col md:flex-row items-start md:items-center justify-between bg-white shadow-[0px_0px_20px_rgba(0,0,0,0.15)] p-6
        rounded-xl mx-auto mt-16 max-w-6xl'>
-           <div>
+
+           <div className='flex flex-col flex-wrap md:flex-row items-start md:items-center gap-4 md:gap-10 text-gray-500'>
+            <div>
+               <label htmlFor=''></label>
+               <input type='date'></input>
+            </div>
+
            </div>
+
            <button type='submit' className='bg-primary hover:bg-primary-dull active:scale-95 transition-all text-white rounded-md max-md:w-full max-md:mt-6 md:px-25 py-3 md:py-4 text-base cursor-pointer'>
             Book Now
            </button>
