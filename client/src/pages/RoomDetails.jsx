@@ -144,7 +144,7 @@ const RoomDetails = () => {
         </form>
 
         {/* common specifications */}
-        <div>
+        <div className="mt-25 space-y-4">
            {roomCommonData.map((spec, index) => (
             <div key={index} className="flex items-center gap-2">
               <img src={spec.icon} alt={`${spec.title}-icon`} className="w-6.5" />
@@ -154,6 +154,11 @@ const RoomDetails = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        <div>
+          <p>Guests will be allocated on the ground floor according to availability. You'll receive a comfortable Two bedroom apartment with a true city feel. The price quoted
+          is for two guests. At the guest slot please mark the number of guests in the booking form to get the exact price for your stay.</p>
         </div>
       </div>
     )
