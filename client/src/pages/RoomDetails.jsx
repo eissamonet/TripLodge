@@ -78,13 +78,13 @@ const RoomDetails = () => {
                <input type='date'id='checkInDate' placeholder='Check-In'
                className='w-full rounded border border-gray-300 px-3 py-2 mt-1.5 outline-none' required ></input>
             </div>
-
+             <div className='w-px h-15 bg-gray-300/70 max-md:hidden'></div>
              <div className='flex flex-col'>
                <label htmlFor='checkOutDate' className='font-medium'>Check-Out</label>
                <input type='date'id='checkOutDate' placeholder='Check-Out'
                className='w-full rounded border border-gray-300 px-3 py-2 mt-1.5 outline-none' required ></input>
             </div>
-
+             <div className='w-px h-15 bg-gray-300/70 max-md:hidden'></div>
              <div className='flex flex-col'>
                <label htmlFor='guests' className='font-medium'>Guests</label>
                <input type='number'id='guests' placeholder='0'
