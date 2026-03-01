@@ -73,8 +73,9 @@ const RoomDetails = () => {
 
            <div className='flex flex-col flex-wrap md:flex-row items-start md:items-center gap-4 md:gap-10 text-gray-500'>
             <div>
-               <label htmlFor=''></label>
-               <input type='date'></input>
+               <label htmlFor='checkInDate' className='font-medium'>Check-In</label>
+               <input type='date'id='checkInDate' placeholder='Check-In'
+               className='w-full rounded border border-gray-300 px-3 py-2 mt-1.5 outline-none' required ></input>
             </div>
 
            </div>
