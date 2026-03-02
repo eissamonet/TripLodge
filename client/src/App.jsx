@@ -19,6 +19,7 @@ const App = () => {
           <Route path='/' element={<Home/>} />
           <Route path='/rooms' element={<AllRooms/>} />
           <Route path='/rooms/:id' element={<RoomDetails/>} />
+          <Route path='/my-bookings' element={<MyBookings/>} />
         </Routes>
       </div>
       {/* footer displayed on all pages */}
