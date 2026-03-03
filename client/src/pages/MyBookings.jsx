@@ -26,13 +26,13 @@ const MyBookings = () => {
             className="grid grid-col-1 md:grid-cols[3fr_2fr_1fr] w-full border-b border-gray-300 py-6 first:border-t"
           >
             {/* hotel details */}
-            <div>
+            <div className="flex flex-col md:flex-row">
               <img
                 src={booking.room.images[0]}
                 alt="hotel-img"
                 className="min-md:w-44 rounded shadow object-cover"
               />
-              <div>
+              <div className="flex flex-col gap-1.5 max-md:mt-3 min-mid:ml-4">
                 <p className="font-playfair text-2xl">
                   {booking.hotel.name}
                   <span className="font-inter text-sm">({booking.room.roomType})</span>
@@ -43,6 +43,13 @@ const MyBookings = () => {
                     alt="location-icon"
                   />
                   <span>{booking.hotel.address}</span>
+                </div>
+                <div className="flex items-center gap-1 text-sm text-gray-500">
+                  <img
+                    src={assets.guestsIcon}
+                    alt="guests-icon"
+                  />
+                  <span>Guests: {booking.guests}</span>
                 </div>
               </div>
             </div>
