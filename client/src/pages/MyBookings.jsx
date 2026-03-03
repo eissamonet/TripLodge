@@ -25,6 +25,11 @@ const MyBookings = () => {
             {/* hotel details */}
             <div>
                 <img src={booking.room.images[0]} alt="hotel-img" className="min-md:w-44 rounded shadow object-cover" />
+                <div>
+                 <p>{booking.hotel.name}
+                 <span>({booking.room.roomType})</span>
+                 </p>
+                </div>
             </div>
             {/* date and time */}
             <div></div>
