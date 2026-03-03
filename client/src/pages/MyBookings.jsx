@@ -33,11 +33,11 @@ const MyBookings = () => {
                 className="min-md:w-44 rounded shadow object-cover"
               />
               <div>
-                <p>
+                <p className="font-playfair text-2xl">
                   {booking.hotel.name}
-                  <span>({booking.room.roomType})</span>
+                  <span className="font-inter text-sm">({booking.room.roomType})</span>
                 </p>
-                <div>
+                <div className="flex items-center gap-1 text-sm text-gray-500">
                   <img
                     src={assets.locationIcon}
                     alt="location-icon"
