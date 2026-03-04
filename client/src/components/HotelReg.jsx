@@ -14,8 +14,26 @@ const HotelReg = () => {
           {/* hotel name */}
           <div className='w-full mt-4'>
             <label htmlFor='name' className='font-medium text-gray-500'>Hotel Name</label>
-            <input type='text' placeholder='Type Here' className='border border-gray-200 rounded w-full px-3 py-2.5 mt-1 outline-indigo-500 font-light'
+            <input id='name' type='text' placeholder='Type Here' className='border border-gray-200 rounded w-full px-3 py-2.5 mt-1 outline-indigo-500 font-light'
             required />
+          </div>
+          {/* contact number */}
+          <div className='w-full mt-4'>
+            <label htmlFor='contact' className='font-medium text-gray-500'>Contact Number</label>
+            <input id='contact' type='text' placeholder='Type Here' className='border border-gray-200 rounded w-full px-3 py-2.5 mt-1 outline-indigo-500 font-light'
+            required />
+          </div>
+          {/* address */}
+          <div className='w-full mt-4'>
+            <label htmlFor='address' className='font-medium text-gray-500'>Address</label>
+            <input id='address' type='text' placeholder='Type Here' className='border border-gray-200 rounded w-full px-3 py-2.5 mt-1 outline-indigo-500 font-light'
+            required />
+          </div>
+          {/* city by drop down */}
+          <div className='w-full mt-4 max-w-60 mr-auto '>
+            <label htmlFor='city' className='font-medium text-gray-500'>City</label>
+            <select id='city' className='border border-gray-200 rounded w-full px-3 py-2.5 mt-1 outline-indigo-500 font-light cursor-pointer' required>
+            </select>
           </div>
         </div>
 
