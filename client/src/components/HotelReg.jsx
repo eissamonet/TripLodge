@@ -13,7 +13,9 @@ const HotelReg = () => {
 
           {/* hotel name */}
           <div className='w-full mt-4'>
-
+            <label htmlFor='name' className='font-medium text-gray-500'>Hotel Name</label>
+            <input type='text' placeholder='Type Here' className='border border-gray-200 rounded w-full px-3 py-2.5 mt-1 outline-indigo-500 font-light'
+            required />
           </div>
         </div>
 
