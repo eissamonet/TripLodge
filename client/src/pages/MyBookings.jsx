@@ -54,7 +54,12 @@ const MyBookings = () => {
               </div>
             </div>
             {/* date and time */}
-            <div></div>
+            <div className="flex flex-row md:items-center md:gap-12 mt-3 gap-8">
+              <div>
+                <p>Check-In:</p>
+                <p className="text-gray-500 text-sm"></p>
+              </div>
+            </div>
             {/* payment details */}
             <div></div>
           </div>
