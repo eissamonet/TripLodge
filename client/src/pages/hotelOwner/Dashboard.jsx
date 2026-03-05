@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Title from "../../components/Title";
-import { assets } from "../../assets/assets";
+import { assets, dashboardDummyData } from "../../assets/assets";
 
 const Dashboard = () => {
+
+    const [dashboardData, setDashboardData] = useState(dashboardDummyData)
   return (
     <div>
       <Title
@@ -17,6 +19,10 @@ const Dashboard = () => {
         {/* total bookings */}
         <div className="bg-primary/3 border border-primary/10 rounded flex p-4 pr-8">
           <img src={assets.totalBookingIcon} alt="" className="max-sm:hidden h-10" />
+        </div>
+        <div className="flex flex-col sm:ml-4 font-medium">
+          <p className="text-blue-500 text-lg">Total Bookings</p>
+          <p className="text-neutral-400 text-base">{dashboardData.totalBookings}</p>
         </div>
         {/* total revenue */}
         <div>
