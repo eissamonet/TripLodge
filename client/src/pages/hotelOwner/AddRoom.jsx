@@ -38,6 +38,10 @@ const AddRoom = () => {
           </label>
         ))}
       </div>
+
+      <div className='w-full flex max-sm:flex-col sm:gap-4 mt4'>
+
+      </div>
     </form>
   )
 }
