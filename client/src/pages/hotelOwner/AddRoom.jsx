@@ -40,7 +40,9 @@ const AddRoom = () => {
       </div>
 
       <div className='w-full flex max-sm:flex-col sm:gap-4 mt4'>
-
+        <div className='flex-1 max-w-48'>
+          <p className='text-gray-800 mt-4'>Room Type</p>
+        </div>
       </div>
     </form>
   )
