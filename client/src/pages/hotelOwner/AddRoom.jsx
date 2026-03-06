@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Title from '../../components/Title'
 
 const AddRoom = () => {
 
@@ -8,7 +9,7 @@ const AddRoom = () => {
     3: null,
     4: null,
   })
-  cont [inputs, setInputs] = useState({
+  const [inputs, setInputs] = useState({
     roomType: '',
     pricePerNight: 0,
     amenities: {
@@ -23,7 +24,7 @@ const AddRoom = () => {
 
   return (
     <div>
-
+      <Title align='left' font='outfit' title='Add New Room' subTitle='Fill in the details to enhance your room listing' />
     </div>
   )
 }
