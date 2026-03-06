@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Title from '../../components/Title'
+import { assets } from '../../assets/assets'
 
 const AddRoom = () => {
 
@@ -23,9 +24,20 @@ const AddRoom = () => {
   })
 
   return (
-    <div>
+    <form>
       <Title align='left' font='outfit' title='Add New Room' subTitle='Fill in the details to enhance your room listing' />
-    </div>
+      {/* upload area for images */}
+      <p className='text-gray-800 mt-10'>Images</p>
+      <div className='grid grid-cols-2 sm:flex gap-4 my-2 flex-wrap'>
+        {Object.keys(images).map((key) => (
+          <label htmlFor={`roomImage${key}`} key={key}>
+            <img className='max-h-13 cursor-pointer opacity-80'
+            src={images[key] ? URL.createObjectURL(images[key]) : assets.uploadArea} alt='' />
+            <input type='file' accept='image/*' id={`roomImage${key}`} />
+          </label>
+        ))}
+      </div>
+    </form>
   )
 }
 
