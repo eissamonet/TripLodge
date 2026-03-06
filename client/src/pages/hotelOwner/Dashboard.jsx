@@ -42,7 +42,7 @@ const Dashboard = () => {
           <table className="w-full">
             <thead className="bg-gray-50">
                <tr>
-                <th>User Name</th>
+                <th className="py-3 px-4 text-gray-800 font-medium">User Name</th>
                </tr>
             </thead>
           </table>
