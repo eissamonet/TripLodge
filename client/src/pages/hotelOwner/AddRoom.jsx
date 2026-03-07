@@ -59,6 +59,15 @@ const AddRoom = () => {
           value={inputs.pricePerNight} onChange={e=> setInputs({...inputs, pricePerNight: e.target.value})} />
         </div>
       </div>
+
+      <p className='text-gray-800 mt-4'>Amenities</p>
+      <div className='flex flex-col flex-wrap mt-1 text-gray-400 max-w-sm'>
+        {Object.keys(inputs.amenities).map((amenity, index)=> (
+          <div key={index}>
+            <input type='checkbox' id={`amenities${index+1}`} checked={inputs.amenities[amenity]} onChange={()=>setInputs({...inputs, amenities: {...inputs.amenities, [amenity]: !inputs.amenities [amenity]}})} className='mr-2' />
+          </div>
+        ))}
+      </div>
     </form>
   )
 }
