@@ -66,7 +66,7 @@ const Dashboard = () => {
       {dashboardData.bookings.map((item, index) =>(
         <tr key={index}>
           <td className="py-3 px-4 text-gray-700 border-t border-gray-300">
-            {item.user.username}
+            <h1>Eissa Monet</h1>
           </td>
 
           <td className="py-3 px-4 text-gray-700 border-t border-gray-300 max-sm:hidden">
