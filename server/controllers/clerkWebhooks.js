@@ -18,12 +18,32 @@ const clerkWebhooks = async (req, res)=>{
         // verifying headers
         const {data, type} = req.body
 
-        const userDate = {
+        const userData = {
             _id: data.id,
             email: data.email_addresses[0].email_address,
             username: data.first_name + '' + data.last_name,
             image: data.image_url,
         }
+
+        // switch cases for different events
+        switch (type) {
+            case 'user.created': {
+                await User.create(userData)
+                break;
+            }
+
+              case 'user.updated': {
+                await User.findByIdAndUpdate(data.id, userData)
+                break;
+            }
+
+
+
+            default:
+                break;
+        }
+
+
 
     } catch (error) {
 
