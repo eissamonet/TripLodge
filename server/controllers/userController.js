@@ -10,3 +10,17 @@ export const getUserData = async (req, res)=>{
         res.json({success: false, message: error.message})
     }
 }
+
+// recent searched citities
+export const storeRecentSearchedCities = async (req, res)=>{
+   try {
+    const {recentSearchedCity} = req.body
+    const user = await req.user;
+
+    if(user.recentSearchedCities.length < 3){
+        user.recentSearchedCities.push(recentSearchedCities)
+    }
+   } catch (error) {
+
+   }
+}
