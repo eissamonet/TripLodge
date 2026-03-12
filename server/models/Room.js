@@ -7,8 +7,9 @@ const roomSchema = new mongoose.Schema({
     amenities: { type: Array, required: true},
     images: [{ type: String}],
     isAvailable: { type: Boolean, default: true},
+
 }, {timestamps: true});
 
-const Room = mongoose.model("Room", roomSchemaSchema);
+const Room = mongoose.model("Room", roomSchema);
 
 export default Room;
