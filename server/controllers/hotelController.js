@@ -6,7 +6,11 @@ export const registerHotel = async (req, res) =>{
         const {name, address, contact, city} = req.body;
         const owner = req.user._id
 
-
+    // check if user already registered
+    const hotel = await Hotel.findOne({owner})
+    if(hotel){
+        return res.json({ success: false, message: "Hotel Already Registered "})
+    }
     } catch (error) {
 
     }
