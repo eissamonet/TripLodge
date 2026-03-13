@@ -9,7 +9,7 @@ import hotelRouter from "./routes/hotelRoutes.js";
 import connectCloudinary from "./configs/cloudinary.js";
 
 connectDB()
-connectCloudinary
+connectCloudinary()
 
 
 const app = express()
