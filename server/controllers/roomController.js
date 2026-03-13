@@ -12,6 +12,7 @@ export const createRoom = async (req, res)=>{
         // upload images to cloudinary
         const uploadImages = req.files.map(async (file) => {
            const response = await cloudinary.uploader.upload(file.path);
+           return response.secure_url;
         })
     } catch (error) {
 
