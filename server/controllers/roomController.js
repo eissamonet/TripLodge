@@ -14,6 +14,9 @@ export const createRoom = async (req, res)=>{
            const response = await cloudinary.uploader.upload(file.path);
            return response.secure_url;
         })
+        // wait for all uploads to complete
+
+        const images = await Promise.all(uploadImages)
     } catch (error) {
 
     }
