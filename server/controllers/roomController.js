@@ -36,6 +36,18 @@ export const createRoom = async (req, res)=>{
 // api to get all rooms
 export const getRooms = async (req, res)=>{
 
+    try {
+       const rooms =  await Room.find({isAvailable: true}).populate({
+        path: 'hotel',
+        populate:{
+            path: 'owner',
+            select: 'image'
+        }
+       })
+    } catch (error) {
+
+    }
+
 }
 
 
