@@ -43,8 +43,10 @@ export const getRooms = async (req, res)=>{
             path: 'owner',
             select: 'image'
         }
-       })
+       }).sort({createdAt: -1 })
+       res.json({success: true, rooms});
     } catch (error) {
+       res.json({success: false, message: error.message});
 
     }
 
