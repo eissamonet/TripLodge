@@ -54,6 +54,8 @@ export const createBooking = async (req, res) =>{
        let totalPrice = roomData.pricePerNight;
 
        // calculate totalprice based on nights
+       const checkIn = new Date(checkInDate)
+       const checkOut = new Date(checkInDate)
 
     } catch (error) {
 
