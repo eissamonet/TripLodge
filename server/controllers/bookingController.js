@@ -70,7 +70,10 @@ export const createBooking = async (req, res) =>{
         totalPrice,
        })
 
-    } catch (error) {
+       res.json({ success: true, message: "Booking created successfully"})
 
+    } catch (error) {
+        console.log(error)
+        res.json({ success: false, message: "Failed to create booking"})
     }
 }
