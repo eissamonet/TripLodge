@@ -55,7 +55,9 @@ export const createBooking = async (req, res) =>{
 
        // calculate totalprice based on nights
        const checkIn = new Date(checkInDate)
-       const checkOut = new Date(checkInDate)
+       const checkOut = new Date(checkOutDate)
+       const timeDiff = checkOut.getTime() - checkIn.getTime();
+       const nights = Math.ceil(timeDiff / (1000 * 3600 * 24));
 
     } catch (error) {
 
