@@ -1,4 +1,5 @@
 import Booking from "../models/Booking.js"
+import Hotel from "../models/Hotel.js";
 import Room from "../models/Room.js"
 
 
@@ -87,5 +88,12 @@ const getUserBookings = async (req, res) =>{
         res.json({ success: true, bookings})
     } catch (error) {
         res.json({ success: false, message: "Failed to fetch bookings"});
+    }
+}
+
+export const getHotelBookings = async (req, res) =>{
+    const hotel = await Hotel.findOne({owner: req.auth.userId});
+    if(!hotel){
+        return res.json({ success: false, message: "No Hotel Found"});
     }
 }
