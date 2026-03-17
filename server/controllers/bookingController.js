@@ -92,7 +92,8 @@ const getUserBookings = async (req, res) =>{
 }
 
 export const getHotelBookings = async (req, res) =>{
-    const hotel = await Hotel.findOne({owner: req.auth.userId});
+    try {
+        const hotel = await Hotel.findOne({owner: req.auth.userId});
     if(!hotel){
         return res.json({ success: false, message: "No Hotel Found"});
     }
@@ -103,4 +104,7 @@ export const getHotelBookings = async (req, res) =>{
     const totalRevenue = bookings.reduce((acc, booking)=>acc + booking.totalPrice, 0)
 
     res.json({ success: true, dashboardData: {totalBookings, totalRevenue, bookings}})
+    } catch (error) {
+
+    }
 }
