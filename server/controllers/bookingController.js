@@ -81,7 +81,7 @@ export const createBooking = async (req, res) =>{
 
 // api to get all bookings for a user
 // get /api/bookings/user
-const getUserBookings = async (req, res) =>{
+export const getUserBookings = async (req, res) =>{
     try {
         const user = req.user._id;
         const bookings = (await Booking.find({user}).populate("room hotel")).sort({ createdAt: -1 });
