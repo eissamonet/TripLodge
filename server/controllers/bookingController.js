@@ -76,4 +76,14 @@ export const createBooking = async (req, res) =>{
         console.log(error)
         res.json({ success: false, message: "Failed to create booking"})
     }
+};
+
+// api to get all bookings for a user
+// get /api/bookings/user
+const getUserBookings = async (req, res) =>{
+    try {
+        const user = req.user._id;
+    } catch (error) {
+
+    }
 }
