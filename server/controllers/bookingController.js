@@ -105,6 +105,7 @@ export const getHotelBookings = async (req, res) =>{
 
     res.json({ success: true, dashboardData: {totalBookings, totalRevenue, bookings}})
     } catch (error) {
+        res.json({ success: false, message: "Failed to fetch bookings"})
 
     }
 }
