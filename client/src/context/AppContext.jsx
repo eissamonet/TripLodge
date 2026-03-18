@@ -2,6 +2,7 @@ import axios from  "axios";
 import { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUser, useAuth } from "@clerk/clerk-react"
+import { toast } from 'react-hot-toast'
 
 axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL;
 
@@ -31,7 +32,7 @@ export const AppProvider = ({ children })=>{
             },5000)
            }
         } catch (error) {
-
+            toast.error(error.message)
         }
     }
 
