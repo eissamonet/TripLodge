@@ -1,11 +1,19 @@
 import axios from  "axios";
-import { createContext } from "react";
+import { createContext, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { useUser, useAuth } from "@clerk/clerk-react"
 
 axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL;
 
 const AppContext = createContext();
 
 export const AppProvider = ({ children })=>{
+
+    const currency = import.meta.env.VITE_CURRENCY || "$";
+    const navigate = useNavigate();
+    const { user } = useUser();
+    const { getToken } = useAuth()
+
 
     const value ={
 
@@ -17,4 +25,6 @@ export const AppProvider = ({ children })=>{
         </AppContext.Provider>
     )
 }
+
+export const useAppContext = ()=> useContext(AppContext)
 
