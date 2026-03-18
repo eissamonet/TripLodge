@@ -12,7 +12,8 @@ const HotelReg = () => {
         <img src={assets.regImage} alt='red-image' className='w-1/2 rounded-xl hidden md:block' />
 
         <div className='relative flex flex-col items-center md:w-1/2 p-8 md:p-10'>
-          <img src={assets.closeIcon} alt="close-icon" className='absolute top-4 right-4 h-4 w-4 cursor-pointer' />
+          <img src={assets.closeIcon} alt="close-icon" className='absolute top-4 right-4 h-4 w-4 cursor-pointer'
+          onClick={()=> setShowHotelReg(false)} />
           <p className='text-2xl font-semi-bold mt-6'>Register Your Hotel</p>
 
           {/* hotel name */}
