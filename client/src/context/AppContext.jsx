@@ -14,12 +14,29 @@ export const AppProvider = ({ children })=>{
     const { user } = useUser();
     const { getToken } = useAuth()
 
-    const [isOwner, serIsOwner] = useState(false)
+    const [isOwner, setIsOwner] = useState(false)
     const [showHotelReg, setShowHotelReg] = useState(false)
+    const [searchedCities, setSearchedCities] = useState([])
 
+    const fetchUser = async ()=>{
+        try {
+           const {data} = await axios.get('/api/user', {header: {Authorization: `Bearer ${await getToken()}` }})
+           if(data.success){
+            setIsOwner(data.role === "hotelOwner")
+            setSearchedCities(data.recentSearchedCitites)
+           } else {
+            // retry fetching user details after 5 seconds
+            setTimeout(()=>{
+                fetchUser()
+            },5000)
+           }
+        } catch (error) {
+
+        }
+    }
 
     const value ={
-
+        currency, navigate, user, getToken, isOwner, setIsOwner, axios, showHotelReg, setShowHotelReg,
     }
 
     return (
