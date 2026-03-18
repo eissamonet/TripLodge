@@ -1,5 +1,5 @@
 import axios from  "axios";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUser, useAuth } from "@clerk/clerk-react"
 import { toast } from 'react-hot-toast'
@@ -36,8 +36,14 @@ export const AppProvider = ({ children })=>{
         }
     }
 
+    useEffect(()=>{
+       if(user){
+        fetchUser();
+       }
+    },[user])
+
     const value ={
-        currency, navigate, user, getToken, isOwner, setIsOwner, axios, showHotelReg, setShowHotelReg,
+        currency, navigate, user, getToken, isOwner, setIsOwner, axios, showHotelReg, setShowHotelReg, searchedCities
     }
 
     return (
