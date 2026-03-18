@@ -1,5 +1,5 @@
 import axios from  "axios";
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUser, useAuth } from "@clerk/clerk-react"
 
@@ -13,6 +13,9 @@ export const AppProvider = ({ children })=>{
     const navigate = useNavigate();
     const { user } = useUser();
     const { getToken } = useAuth()
+
+    const [isOwner, serIsOwner] = useState(false)
+    const [showHotelReg, setShowHotelReg] = useState(false)
 
 
     const value ={
