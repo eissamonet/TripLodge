@@ -1,5 +1,5 @@
 import axios from  "axios";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUser, useAuth } from "@clerk/clerk-react"
 import { toast } from 'react-hot-toast'
@@ -19,7 +19,7 @@ export const AppProvider = ({ children })=>{
     const [showHotelReg, setShowHotelReg] = useState(false)
     const [searchedCities, setSearchedCities] = useState([])
 
-    const fetchUser = async ()=>{
+    const fetchUser = useCallback( async ()=>{
         try {
            const {data} = await axios.get('/api/user', {headers: {Authorization: `Bearer ${await getToken()}` }})
            if(data.success){
@@ -27,20 +27,20 @@ export const AppProvider = ({ children })=>{
             setSearchedCities(data.recentSearchedCities)
            } else {
             // retry fetching user details after 5 seconds
-            setTimeout(()=>{
-                fetchUser()
-            },5000)
+            setTimeout(fetchUser, 5000);
            }
         } catch (error) {
-            toast.error(error.message)
+            toast.error(error.message);
         }
-    }
+    }, [getToken]);
+
 
     useEffect(()=>{
-       if(user){
-        fetchUser();
-       }
-    }, [user])
+        if(user){
+            fetchUser()
+        }
+    },[user, fetchUser])
+
 
     const value ={
         currency, navigate, user, getToken, isOwner,
