@@ -21,10 +21,10 @@ export const AppProvider = ({ children })=>{
 
     const fetchUser = async ()=>{
         try {
-           const {data} = await axios.get('/api/user', {header: {Authorization: `Bearer ${await getToken()}` }})
+           const {data} = await axios.get('/api/user', {headers: {Authorization: `Bearer ${await getToken()}` }})
            if(data.success){
             setIsOwner(data.role === "hotelOwner")
-            setSearchedCities(data.recentSearchedCitites)
+            setSearchedCities(data.recentSearchedCities)
            } else {
             // retry fetching user details after 5 seconds
             setTimeout(()=>{
@@ -40,7 +40,7 @@ export const AppProvider = ({ children })=>{
        if(user){
         fetchUser();
        }
-    },[user])
+    }, [user])
 
     const value ={
         currency, navigate, user, getToken, isOwner,
@@ -54,5 +54,5 @@ export const AppProvider = ({ children })=>{
     )
 }
 
-export const useAppContext = ()=> useContext(AppContext)
+export const useAppContext = ()=> useContext(AppContext);
 
