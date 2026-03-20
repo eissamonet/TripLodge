@@ -37,9 +37,9 @@ export const AppProvider = ({ children })=>{
 
     useEffect(()=>{
         if(user){
-            fetchUser()
+            fetchUser();
         }
-    },[user, fetchUser])
+    }, [user, fetchUser]);
 
 
     const value ={
