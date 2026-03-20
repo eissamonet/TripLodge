@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation, } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { assets } from "../assets/assets"
 import { useClerk, UserButton } from "@clerk/clerk-react";
 import { useAppContext } from "../context/AppContext";
@@ -46,7 +46,6 @@ const NavBar = () => {
 
     return (
             <nav className={`fixed top-0 left-0 w-full flex items-center justify-between px-4 md:px-16 lg:px-24 xl:px-32 transition-all duration-500 z-50 ${isScrolled ? "bg-white/80 shadow-md text-gray-700 backdrop-blur-lg py-3 md:py-4" : "py-4 md:py-6"}`}>
-
                 <div className="flex items-center gap-1">
                     <h1 className={`font-playfair text-4xl ${isScrolled ? "text-gray-800" : "text-white"}`}>
                         TripLodge
