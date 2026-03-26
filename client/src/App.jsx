@@ -11,7 +11,6 @@ import Layout from './pages/hotelOwner/Layout';
 import Dashboard from './pages/hotelOwner/Dashboard';
 import AddRoom from './pages/hotelOwner/AddRoom';
 import ListRoom from './pages/hotelOwner/ListRoom';
-import {Toaster} from 'react-hot-toast'
 import { useAppContext } from './context/AppContext';
 
 const App = () => {
@@ -22,7 +21,6 @@ const App = () => {
 
   return (
     <div>
-      <Toaster />
       {!isOwnerPath && <NavBar />}
       {showHotelReg && <HotelReg />}
       <div className='min-h-[70vh]'>
