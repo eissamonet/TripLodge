@@ -30,7 +30,7 @@ export const AppProvider = ({ children })=>{
             setTimeout(fetchUser, 5000);
            }
         } catch (error) {
-            toast.error(error.message);
+            toast.error(error.response?.data?.message || error.message);
         }
     }, [getToken]);
 
