@@ -11,7 +11,7 @@ export const getUserData = async (req, res)=>{
     }
 }
 
-//  store recent searched cities
+//  store User recent searched cities
 export const storeRecentSearchedCities = async (req, res)=>{
    try {
     const {recentSearchedCity} = req.body
