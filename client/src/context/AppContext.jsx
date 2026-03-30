@@ -19,20 +19,27 @@ export const AppProvider = ({ children })=>{
     const [showHotelReg, setShowHotelReg] = useState(false)
     const [searchedCities, setSearchedCities] = useState([])
 
-    const fetchUser = useCallback( async ()=>{
-        try {
-           const {data} = await axios.get('/api/user', {headers: {Authorization: `Bearer ${await getToken()}` }})
-           if(data.success){
-            setIsOwner(data.role === "hotelOwner")
-            setSearchedCities(data.recentSearchedCities)
-           } else {
-            // retry fetching user details after 5 seconds
-            setTimeout(fetchUser, 5000);
-           }
-        } catch (error) {
-            toast.error(error.response?.data?.message || error.message);
+    const fetchUser = useCallback(async () => {
+    try {
+        const token = await getToken();
+
+        const { data } = await axios.get('/api/user', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+
+        if (data.success) {
+            setIsOwner(data.role === "hotelOwner");
+            setSearchedCities(data.recentSearchedCities);
+        } else {
+            setTimeout(() => fetchUser(), 5000);
         }
-    }, [getToken]);
+
+    } catch (error) {
+        toast.error(error.response?.data?.message || error.message);
+    }
+}, [getToken]);
 
 
     useEffect(()=>{
