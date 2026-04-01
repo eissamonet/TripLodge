@@ -4,7 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { useUser, useAuth } from "@clerk/clerk-react"
 import { toast } from 'react-hot-toast'
 
-axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL;
+{/*axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL; */}
+
+const axiosInstance= axios.create({
+    baseURL: import.meta.env.VITE_BACKEND_URL
+})
 
 const AppContext = createContext();
 
@@ -23,7 +27,7 @@ export const AppProvider = ({ children })=>{
     try {
         const token = await getToken();
 
-        const { data } = await axios.get('/api/user', {
+        const { data } = await axiosInstance.get('/api/user', {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -51,7 +55,7 @@ export const AppProvider = ({ children })=>{
 
     const value ={
         currency, navigate, user, getToken, isOwner,
-        setIsOwner, axios, showHotelReg, setShowHotelReg, searchedCities, setSearchedCities
+        setIsOwner, axios, axiosInstance, showHotelReg, setShowHotelReg, searchedCities, setSearchedCities
     }
 
     return (
