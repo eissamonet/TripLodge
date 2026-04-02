@@ -7,7 +7,7 @@ import { toast } from 'react-hot-toast'
 {/*axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL; */}
 
 
-const axiosInstance= axios.create({
+const axiosInstance = axios.create({
     baseURL: import.meta.env.VITE_BACKEND_URL
 })
 
@@ -57,7 +57,7 @@ export const AppProvider = ({ children })=>{
 
     const value ={
         currency, navigate, user, getToken, isOwner,
-        setIsOwner, axios, axiosInstance, showHotelReg, setShowHotelReg, searchedCities, setSearchedCities
+        setIsOwner, axios: axiosInstance, showHotelReg, setShowHotelReg, searchedCities, setSearchedCities
     }
 
     return (
