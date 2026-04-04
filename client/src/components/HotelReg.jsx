@@ -15,7 +15,9 @@ const HotelReg = () => {
   const onSubmitHandler = async (event)=>{
      try {
        event.preventDefault();
-       const {data} = await axiosInstance.post('/api/hotels', {name, contact, address, city}, {headers: {Authorization: `Bearer ${await getToken()}`}})
+       const {data} = await axiosInstance.post('/api/hotels', {name, contact, address, city}, {headers: {Authorization: `Bearer ${await getToken()}`}});
+
+       console.log("Response data:", data);
 
        if(data.success){
         toast.success(data.message)
