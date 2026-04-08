@@ -3,17 +3,14 @@ import User from "../models/User.js";
 // middleware to check if User is authenticated
 export const protect = async (req, res, next) => {
   try {
-    console.log("req.auth:", req.auth)
-    console.log("userId:", req.auth?.userId)
 
     const userId = req.auth?.userId;
 
     if (!userId) {
-      return res.status(401).json({ success: false, message: "Unauthorized" });
+      return res.json({ success: false, message: "Not Authorized" });
     }
 
-    const user = await User.findOne({ clerkId: userId });
-    console.log("Mongo user:", user);
+    const user = await User.findById(userId);
 
     if (!user) {
       return res.json({ success: false, message: "User Not Found" });
@@ -22,6 +19,6 @@ export const protect = async (req, res, next) => {
     req.user = user;
     next();
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message });
+    res.json({ success: false, message: error.message });
   }
 };
