@@ -28,7 +28,6 @@ export const AppProvider = ({ children })=>{
     const fetchUser = useCallback(async () => {
     try {
         const token = await getToken();
-        console.log("Token:", token);
 
         const { data } = await axiosInstance.get('/api/user', {
             headers: {
