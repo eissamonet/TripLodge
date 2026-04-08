@@ -31,6 +31,8 @@ app.use('/api/rooms', roomRouter)
 app.use('/api/bookings', bookingRouter)
 
 const PORT = process.env.PORT || 3000;
+// Add this right after dotenv loads
+console.log("CLERK_SECRET_KEY:", process.env.CLERK_SECRET_KEY ? "✅ Loaded" : "❌ MISSING")
 
 app.listen(PORT, ()=> console.log(`Server running on port ${PORT}`));
 
