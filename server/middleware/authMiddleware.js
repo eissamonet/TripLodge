@@ -6,16 +6,17 @@ export const protect = async (req, res, next) => {
     console.log("req.auth:", req.auth)
     console.log("userId:", req.auth?.userId)
 
-    const userId = req.auth?.userId; // ✅ safely access userId
+    const userId = req.auth?.userId;
 
     if (!userId) {
       return res.json({ success: false, message: "Not Authorized" });
     }
 
     const user = await User.findOne({ clerkId: userId });
+    console.log("Mongo user:", user);
 
     if (!user) {
-      return res.json({ success: false, message: "User Not Found" }); // ✅ handle missing user
+      return res.json({ success: false, message: "User Not Found" });
     }
 
     req.user = user;
