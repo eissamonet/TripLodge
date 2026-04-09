@@ -35,7 +35,7 @@ const AddRoom = () => {
   const onSubmitHandler = async (e)=>{
     e.preventDefault()
     // check if all inputs are filled
-    if(!inputs.roomType || !inputs.pricePerNight || !inputs.amenities || !Object.values(images).some(image => image)){
+    if(!inputs.roomType || !inputs.pricePerNight <=0 || !inputs.amenities || !Object.values(images).some(image => image)){
       toast.error("Please fill in all the details")
       return;
     }
@@ -79,7 +79,8 @@ const AddRoom = () => {
         toast.error(data.message)
       }
     } catch (error) {
-       toast.error(error.message)
+       toast.error(error.response?.data?.message || error.message);
+       console.log(error);
     } finally{
       setLoading(false);
     }
