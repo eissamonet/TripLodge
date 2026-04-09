@@ -53,7 +53,7 @@ const AddRoom = () => {
         images[key] && formData.append('images', images[key])
       })
 
-      const {data} = await axios.post('/api/rooms/', formData, {headers: {Authorization: `Bearer ${await getToken()}`}})
+      const {data} = await axios.post('/api/rooms', formData, {headers: {Authorization: `Bearer ${await getToken()}`}})
 
       if (data.success){
         toast.success(data.message)
@@ -80,7 +80,7 @@ const AddRoom = () => {
       }
     } catch (error) {
        toast.error(error.message)
-    }finally{
+    } finally{
       setLoading(false);
     }
 
@@ -132,8 +132,8 @@ const AddRoom = () => {
           </div>
         ))}
       </div>
-      <button className='bg-primary text-white px-8 py-2 rounded mt-8 cursor-pointer'>
-        Add Room
+      <button className='bg-primary text-white px-8 py-2 rounded mt-8 cursor-pointer' disabled={loading}>
+        {loading ? 'Adding...' : 'Add Room'}
       </button>
     </form>
   )
