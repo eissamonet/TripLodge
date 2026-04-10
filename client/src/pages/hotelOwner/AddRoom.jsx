@@ -7,7 +7,7 @@ import toast from 'react-hot-toast'
 
 const AddRoom = () => {
 
-  const { axios, getToken} = useAppContext()
+  const { axiosInstance, getToken} = useAppContext()
 
 
   const [images, setImages] = useState({
@@ -53,7 +53,7 @@ const AddRoom = () => {
         images[key] && formData.append('images', images[key])
       })
 
-      const {data} = await axios.post('/api/rooms', formData, {headers: {Authorization: `Bearer ${await getToken()}`}})
+      const {data} = await axiosInstance.post('/api/rooms', formData, {headers: {Authorization: `Bearer ${await getToken()}`}})
 
       if (data.success){
         toast.success(data.message)
