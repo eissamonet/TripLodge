@@ -4,7 +4,7 @@ import User from "../models/User.js";
 export const registerHotel = async (req, res) =>{
     try {
         const {name, address, contact, city} = req.body;
-        const owner = req.user._id
+        const owner = req.auth().userId; //clerk userId
 
     // check if user already registered
     const hotel = await Hotel.findOne({owner})
@@ -14,7 +14,7 @@ export const registerHotel = async (req, res) =>{
 
     await Hotel.create({name, address, contact, city, owner});
 
-    await User.findByIdAndUpdate(owner, {role: "hotelOwner"});
+    await User.findOneAndUpdate({ clerkId: owner }, {role: "hotelOwner"});
 
     res.json({success: true, message: "Hotel Registered Successfully"})
 
