@@ -35,7 +35,7 @@ const AddRoom = () => {
   const onSubmitHandler = async (e)=>{
     e.preventDefault()
     // check if all inputs are filled
-    if(!inputs.roomType || !inputs.pricePerNight <=0 || !inputs.amenities || !Object.values(images).some(image => image)){
+    if(!inputs.roomType || inputs.pricePerNight <= 0 || !Object.values(images).some(image => image)){
       toast.error("Please fill in all the details")
       return;
     }
@@ -120,7 +120,7 @@ const AddRoom = () => {
             Price <span className='text-sm'>/night</span>
           </p>
           <input type='number' placeholder='0' className='border border-gray-300 mt-1 rounded p-2 w-24'
-          value={inputs.pricePerNight} onChange={e=> setInputs({...inputs, pricePerNight: e.target.value})} />
+          value={inputs.pricePerNight} onChange={e=> setInputs({...inputs, pricePerNight: Number(e.target.value)})} />
         </div>
       </div>
 

@@ -3,34 +3,52 @@ import { v2 as cloudinary } from "cloudinary"
 import Room from "../models/Room.js";
 
 // api to create a new room for a hotel
-export const createRoom = async (req, res)=>{
-    try {
-        const {roomType, pricePerNight, amenities} = req.body;
-        const hotel = await Hotel.findOne({owner: req.auth.userId})
+export const createRoom = async (req, res) => {
+  try {
+    const { roomType, pricePerNight, amenities } = req.body;
 
-        if(!hotel) return res.json({ success: false, message: "No Hotel Found"});
+    console.log("BODY:", req.body);
+    console.log("FILES:", req.files);
+    console.log("USER:", req.auth);
 
-        // upload images to cloudinary
-        const uploadImages = req.files.map(async (file) => {
-           const response = await cloudinary.uploader.upload(file.path);
-           return response.secure_url;
-        })
-        // wait for all uploads to complete
-        const images = await Promise.all(uploadImages)
-
-        await Room.create({
-            hotel: hotel._id,
-            roomType,
-            pricePerNight: +pricePerNight,
-            amenities: JSON.parse(amenities),
-            images,
-        })
-        res.json({ success: true, message: "Room created successfully"})
-    } catch (error) {
-        res.json({ success: false, message: error.message })
-
+    const hotel = await Hotel.findOne({ owner: req.auth.userId });
+    if (!hotel) {
+      return res.json({ success: false, message: "No Hotel Found" });
     }
-}
+
+    if (!req.files || req.files.length === 0) {
+      return res.json({ success: false, message: "Please upload images" });
+    }
+
+    const uploadImages = req.files.map(async (file) => {
+      const response = await cloudinary.uploader.upload(file.path);
+      return response.secure_url;
+    });
+
+    const images = await Promise.all(uploadImages);
+
+    let parsedAmenities = [];
+    try {
+      parsedAmenities = amenities ? JSON.parse(amenities) : [];
+    } catch {
+      return res.json({ success: false, message: "Invalid amenities format" });
+    }
+
+    await Room.create({
+      hotel: hotel._id,
+      roomType,
+      pricePerNight: +pricePerNight,
+      amenities: parsedAmenities,
+      images,
+    });
+
+    res.json({ success: true, message: "Room created successfully" });
+
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+};
 
 
 // api to get all rooms
