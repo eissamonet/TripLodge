@@ -4,14 +4,19 @@ import Room from "../models/Room.js";
 
 // api to create a new room for a hotel
 export const createRoom = async (req, res) => {
-  try {
+   try {
     const { roomType, pricePerNight, amenities } = req.body;
 
-    console.log("BODY:", req.body);
-    console.log("FILES:", req.files);
-    console.log("USER:", req.auth);
+    const clerkUserId = req.auth().userId;
+    console.log("🔍 Clerk userId from token:", clerkUserId);
+
+    // Check what's actually stored in the Hotel collection
+    const allHotels = await Hotel.find({});
+    console.log("🏨 All hotels in DB:", JSON.stringify(allHotels, null, 2));
 
     const hotel = await Hotel.findOne({ owner: req.auth().userId });
+    console.log("🔎 Hotel found:", hotel);
+
     if (!hotel) {
       return res.json({ success: false, message: "No Hotel Found" });
     }
