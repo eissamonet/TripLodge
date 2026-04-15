@@ -14,7 +14,7 @@ export const protect = async (req, res, next) => {
       return res.json({ success: false, message: "Not Authorized" });
     }
 
-    const user = await User.findOne({ clerkId: userId });
+    const user = await User.findById(userId);
     console.log("Mongo user:", user);
 
     if (!user) {
