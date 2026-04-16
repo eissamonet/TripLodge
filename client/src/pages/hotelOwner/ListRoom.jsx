@@ -1,9 +1,19 @@
 import React, { useState } from "react";
-import { roomsDummyData } from "../../assets/assets";
 import Title from "../../components/Title";
+import { useAppContext } from "../../context/AppContext";
 
 const ListRoom = () => {
-  const [rooms, setRooms] = useState(roomsDummyData);
+  const [rooms, setRooms] = useState([])
+  const { axiosInstance, getToken, user} = useAppContext()
+
+  // fetch room for hotel owner
+  const fetchRooms = async ()=>{
+    try {
+      const { data } = await axiosInstance.get('/api/rooms/owner', {headers: {Authorization: `Bearer ${await getToken()}`}})
+    } catch (error) {
+
+    }
+  }
 
   return (
     <div>
