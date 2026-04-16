@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Title from "../../components/Title";
 import { useAppContext } from "../../context/AppContext";
+import toast from "react-hot-toast";
 
 const ListRoom = () => {
   const [rooms, setRooms] = useState([])
@@ -10,8 +11,13 @@ const ListRoom = () => {
   const fetchRooms = async ()=>{
     try {
       const { data } = await axiosInstance.get('/api/rooms/owner', {headers: {Authorization: `Bearer ${await getToken()}`}})
+      if (data.success){
+        setRooms(data.rooms)
+      }else{
+        toast.error(data.message)
+      }
     } catch (error) {
-
+      toast.error(error.message)
     }
   }
 
