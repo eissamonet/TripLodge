@@ -64,7 +64,37 @@ const AllRooms = () => {
       }
       return updatedFilters;
     });
-  };
+  }
+  const handleSortChange = (sortOption) => {
+    setSelectedSort(sortOption);
+  }
+
+  // functions to check if a room matches the selected room type
+  const matchesRoomType = (room)=>{
+    return selectedFilters.roomTypes.length === 0 || selectedFilters.roomTypes.includes(room.roomType);
+  }
+
+  // function to check if a room matches the selected price range
+  const matchesPriceRange = (room)=>{
+    return selectedFilters.priceRanges.length === 0 || selectedFilters.priceRanges.some(range => {
+      const [min, max] = range.split(' to ').map(Number);
+      return room.pricePerNight >= min && room.pricePerNight <= max;
+    });
+  }
+
+  // function to sort rooms based on the selected sort option
+  const sortRooms = (a,b) =>{
+    if (selectedSort === 'Price: Low to High') {
+      return a.pricePerNight - b.pricePerNight;
+    }
+    if(selectedSort === 'Price: High to Low'){
+      return b.pricePerNight - a.pricePerNight;
+    }
+    if(selectedSort === 'Newest First'){
+      return new Date(b.createdAt) - new Date(a.createdAt);
+    }
+    return 0;
+  }
 
   return (
     <div className='flex flex-col-reverse lg:flex-row items-start justify-between pt-28 md:pt-35 px-4 md:px-16 lg:px-24
