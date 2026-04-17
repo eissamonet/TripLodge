@@ -1,9 +1,30 @@
 import React, { useState } from "react";
 import Title from "../../components/Title";
-import { assets, dashboardDummyData } from "../../assets/assets";
+import { assets } from "../../assets/assets";
 
 const Dashboard = () => {
-  const [dashboardData, setDashboardData] = useState(dashboardDummyData);
+
+  const { currency, user, getToken, toast, axiosInstance } = useAppContext();
+
+  const [dashboardData, setDashboardData] = useState({
+    bookings: [],
+    totalBookings: 0,
+    totalRevenue: 0,
+  })
+
+  const fetchDashboardData = async () => {
+    try {
+      const { data } = await axiosInstance.get('/api/bookings/hotel', {headers: {Authorization: `Bearer ${await getToken()}`}})
+      if(data.success){
+        setDashboardData(data.dashboardData)
+      }else{
+        toast.error(data.message)
+      }
+    } catch (error) {
+      toast.error(error.message)
+    }
+  }
+
   return (
     <div>
       <Title
