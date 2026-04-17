@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { assets, facilityIcons, roomsDummyData } from '../assets/assets'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import StarRating from '../components/StarRating';
+import { useAppContext } from '../context/AppContext';
 
 
 const CheckBox = ({ label, selected = false, onChange = () => { } }) => {
@@ -23,8 +24,14 @@ const RadioButton = ({ label, selected = false, onChange = () => { } }) => {
 };
 
 const AllRooms = () => {
-  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const {rooms, navigate, currency} = useAppContext();
   const [openFilters, setOpenFilters] = useState(false);
+  const [selectedFilters, setSelectedFilters]= useState({
+    roomTypes: [],
+    priceRanges: [],
+  });
+  const [selectedSort, setSelectedSort] = useState('');
 
   const roomTypes = [
     'Single Bed',
