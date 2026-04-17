@@ -51,7 +51,20 @@ const AllRooms = () => {
     'Price: Low to High',
     'Price: High to Low',
     'Newest First',
-  ]
+  ];
+
+  // handle changes for filters and sort options
+  const handleFilterChange = (checked, value, type) => {
+    setSelectedFilters((preFilters) => {
+      const updatedFilters = {...preFilters};
+      if(checked) {
+        updatedFilters[type].push(value);
+      }else{
+        updatedFilters[type] = updatedFilters[type].filter(item => item !== value);
+      }
+      return updatedFilters;
+    });
+  };
 
   return (
     <div className='flex flex-col-reverse lg:flex-row items-start justify-between pt-28 md:pt-35 px-4 md:px-16 lg:px-24
