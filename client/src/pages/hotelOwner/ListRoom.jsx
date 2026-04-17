@@ -21,6 +21,11 @@ const ListRoom = () => {
     }
   }
 
+  // toggle room availability
+  const toggleAvailability = async (roomId)=>{
+    const {data} = await axiosInstance.post('/api/rooms/toggle-availability', {roomId}, {headers: {Authorization: `Bearer ${await getToken()}`}})
+  }
+
   useEffect(()=> {
     if(user){
       fetchRooms()
