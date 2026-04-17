@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Title from "../../components/Title";
 import { assets } from "../../assets/assets";
 
@@ -24,6 +24,12 @@ const Dashboard = () => {
       toast.error(error.message)
     }
   }
+
+  useEffect(() => {
+    if(user){
+      fetchDashboardData();
+    }
+  }, [user])
 
   return (
     <div>
