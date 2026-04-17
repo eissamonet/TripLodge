@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Title from "../../components/Title";
 import { useAppContext } from "../../context/AppContext";
 import toast from "react-hot-toast";
@@ -20,6 +20,12 @@ const ListRoom = () => {
       toast.error(error.message)
     }
   }
+
+  useEffect(()=> {
+    if(user){
+      fetchRooms()
+    }
+  },[user])
 
   return (
     <div>
