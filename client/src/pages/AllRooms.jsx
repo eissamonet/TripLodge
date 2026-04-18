@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import { assets, facilityIcons, roomsDummyData } from '../assets/assets'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import StarRating from '../components/StarRating';
@@ -95,6 +95,20 @@ const AllRooms = () => {
     }
     return 0;
   }
+
+  // filter destination
+  const filterDestination = (room) => {
+    const destination = searchParams.get.('destination');
+    if(!destination) return true;
+    return room.hotel.city.toLowerCase().includes(destination.toLowerCase())
+  }
+
+  // filter and sort rooms based on the selected filters and sort option
+  const filteredRooms = useMemo(()=>{
+    return rooms.filter(room => matchesRoomType(room) && matchesPriceRange(room) && filterDestination(room))
+    .sort(sortRooms);
+  }, [rooms, selectedFilters, selectedSort, searchParams])
+
 
   return (
     <div className='flex flex-col-reverse lg:flex-row items-start justify-between pt-28 md:pt-35 px-4 md:px-16 lg:px-24
