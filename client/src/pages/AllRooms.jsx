@@ -98,7 +98,7 @@ const AllRooms = () => {
 
   // filter destination
   const filterDestination = (room) => {
-    const destination = searchParams.get.('destination');
+    const destination = searchParams.get('destination');
     if(!destination) return true;
     return room.hotel.city.toLowerCase().includes(destination.toLowerCase())
   }
@@ -108,6 +108,16 @@ const AllRooms = () => {
     return rooms.filter(room => matchesRoomType(room) && matchesPriceRange(room) && filterDestination(room))
     .sort(sortRooms);
   }, [rooms, selectedFilters, selectedSort, searchParams])
+
+  // clear all filters
+  const clearFilters = () => {
+    setSelectedFilters({
+      roomType: [],
+      priceRanges: [],
+    });
+    setSelectedSort('');
+    setSearchParams({});
+  }
 
 
   return (
