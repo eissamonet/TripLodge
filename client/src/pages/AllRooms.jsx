@@ -105,9 +105,8 @@ const AllRooms = () => {
 
   // filter and sort rooms based on the selected filters and sort option
   const filteredRooms = useMemo(()=>{
-    return rooms.filter(room => matchesRoomType(room) && matchesPriceRange(room) && filterDestination(room))
-    .sort(sortRooms);
-  }, [rooms, selectedFilters, selectedSort, searchParams])
+    return rooms.filter(room => matchesRoomType(room) && matchesPriceRange(room) && filterDestination(room)).sort(sortRooms);
+  },[rooms, selectedFilters, selectedSort, searchParams])
 
   // clear all filters
   const clearFilters = () => {
@@ -129,7 +128,7 @@ const AllRooms = () => {
           <p className='text-sm md:text-base text-gray-500/90 mt-2'>Take advantage of our limited-time offers and special packages to enhance your stay and create unforgettable memories.</p>
         </div>
 
-        {roomsDummyData.map((room) => (
+        {filteredRooms.map((room) => (
           <div key={room._id} className='flex flex-col md:flex-row items-start py-10 gap-6 border-b border-gray-300 last:pb-30 last:border-0'>
             <img onClick={()=> {navigate(`/rooms/${room._id}`); scrollTo(0,0)}}
             src={room.images[0]} alt='hotel-img' title='View Room Details'
@@ -178,7 +177,7 @@ const AllRooms = () => {
           <div className='px-5 pt-5'>
             <p className='font-medium text-gray-800 pb-2'>Popular filters</p>
             {roomTypes.map((room, index) => (
-              <CheckBox key={index} label={room} />
+              <CheckBox key={index} label={room} selected={selectedFilters.roomTypes.includes(room)} onChange={(checked)=>handleFilterChange(checked, room, 'roomType')} />
             ))}
           </div>
           <div className='px-5 pt-5'>
