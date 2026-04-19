@@ -5,7 +5,7 @@ import { useAppContext } from '../context/AppContext'
 const Hero = () => {
 
 
-    const {getToke, axiosInstance, navigate, setSearchedCities} = useAppContext
+    const {getToke, axiosInstance, navigate, setSearchedCities} = useAppContext()
     const [destination, setDestination] = useState('')
 
   return (
@@ -22,7 +22,7 @@ const Hero = () => {
                     <img src={assets.calenderIcon} alt='' className='h-4' />
                     <label htmlFor="destinationInput">Destination</label>
                 </div>
-                <input list='destinations' id="destinationInput" type="text" className=" rounded border border-gray-200 px-3 py-1.5 mt-1.5 text-sm outline-none" placeholder="Type here" required />
+                <input onChange={e=> setDestination(e.target.value)} value={destination} list='destinations' id="destinationInput" type="text" className=" rounded border border-gray-200 px-3 py-1.5 mt-1.5 text-sm outline-none" placeholder="Type here" required />
                 <datalist id='destinations'>
                    {cities.map((city, index) =>(
                      <option value={city} key={index} />
