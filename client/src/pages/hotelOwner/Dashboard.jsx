@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import Title from "../../components/Title";
 import { assets } from "../../assets/assets";
 import { useAppContext } from "../../context/AppContext";
+import toast from "react-hot-toast";
 
 const Dashboard = () => {
 
-  const { currency, user, getToken, toast, axiosInstance } = useAppContext()
+  const { currency, user, getToken, axiosInstance } = useAppContext()
 
   const [dashboardData, setDashboardData] = useState({
     bookings: [],
