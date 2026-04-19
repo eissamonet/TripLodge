@@ -1,11 +1,20 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import HotelCard from './HotelCard'
 import Title from './Title'
-import { useNavigate } from 'react-router-dom'
 import { useAppContext } from '../context/AppContext'
 
 const RecommendedHotels = () => {
-  const {rooms, navigate} = useAppContext()
+  const {rooms, searchedCities} = useAppContext();
+  const [recommended, setRecommended] = useState([]);
+
+  const filterHotels = ()=>{
+    const filteredHotels = rooms.slice().filter( room => searchedCities.includes(room.city) );
+    setRecommended(filteredHotels);
+  }
+
+  useEffect(()=>{
+    filterHotels();
+  },[rooms, searchedCities]);
 
   return rooms.length > 0 && (
     <div className='flex flex-col items-center px-6 md:px-16 lg:px-24 bg-slate-50 py-20'>
@@ -27,4 +36,4 @@ const RecommendedHotels = () => {
   )
 }
 
-export default FeaturedDestination
+export default RecommendedHotels
