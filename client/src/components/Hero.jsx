@@ -5,8 +5,27 @@ import { useAppContext } from '../context/AppContext'
 const Hero = () => {
 
 
-    const {getToke, axiosInstance, navigate, setSearchedCities} = useAppContext()
+    const {getToken, axiosInstance, navigate, setSearchedCities} = useAppContext()
     const [destination, setDestination] = useState('')
+
+    const onSearch = async (e) =>{
+        e.preventDefault();
+        navigate(`/rooms?destination=${destination}`);
+        // call api to save recent searched city
+        await axiosInstance.post('/api/user/store-recent-search', {recentSearchedCity: destination}, {
+            headers: {
+                Authorization: `Bearer ${await getToken()}`
+            }});
+
+        // add destination to searchedCities max 3 recent searches cities
+        setSearchedCities((prevSearchedCities) => {
+            const updatedSearchedCities = [...prevSearchedCities, destination];
+            if (updatedSearchedCities.length > 3) {
+                updatedSearchedCities.shift(); // remove the oldest search if more than 3
+            }
+            return updatedSearchedCities;
+        });
+    }
 
   return (
     <div className='flex flex-col items-start justify-center px-6 md:px-16 lg:px-24 xl:px-32 text-white bg-[url("/src/assets/heroImage.png")]
@@ -15,7 +34,7 @@ const Hero = () => {
        <h1 className='font-playfair text-2xl md:text-5xl md:text-[56px] md:leading-[56px] font-bold md:font-extrabold max-w-xl mt-4'>Discover Your Perfect Getaway Destination</h1>
        <p className='max-w-130 mt-2 text-sm md:text-base'>Unparalleled luxury and comfort await at the world's most exclusive hotels and resorts. Start your journey today</p>
 
-       <form className='bg-white text-gray-500 rounded-lg flex flex-col px-6 py-4 mt-8 md:flex-row max-md:items-start gap-4 max-md:mx-auto'>
+       <form onSubmit={onSearch} className='bg-white text-gray-500 rounded-lg flex flex-col px-6 py-4 mt-8 md:flex-row max-md:items-start gap-4 max-md:mx-auto'>
 
             <div>
                 <div className='flex items-center gap-2'>
