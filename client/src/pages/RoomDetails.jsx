@@ -107,6 +107,7 @@ const RoomDetails = () => {
                 Check-In
               </label>
               <input
+                onChange={(e)=>setCheckInDate(e.target.value)} min={new Date().toISOString().split("T")[0]}
                 type="date"
                 id="checkInDate"
                 placeholder="Check-In"
