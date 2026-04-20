@@ -42,6 +42,29 @@ const RoomDetails = () => {
     }
   }
 
+  // onsubmit function to check avaiability and book room
+  const onSubmitHandler = async (e)=>{
+    try {
+      e.preventDefault();
+      if (!isAvailable){
+        return checkAvailability();
+      }else{
+        const { data } = await axiosInstance.post('/api/bookings/book', {room: id, checkInDate, checkOutDate, guests, paymentMethod: 'Pay At hotel'},
+          {headers: {
+              Authorization: `Bearer ${await getToken()}`}})
+        if (data.success){
+          toast.success(data.message)
+          navigate('/my-bookings')
+          scrollTo(0,0)
+        }else{
+          toast.error(data.message)
+        }
+      }
+    } catch (error) {
+      toast.error(error.message)
+    }
+  }
+
   useEffect(() => {
     const room = rooms.find(room => room._id === id);
     room && setRoom(room)
