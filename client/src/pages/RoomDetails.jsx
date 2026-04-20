@@ -120,6 +120,7 @@ const RoomDetails = () => {
                 Check-Out
               </label>
               <input
+                onChange={(e)=>setCheckOutDate(e.target.value)} min={checkInDate} disabled={!checkInDate}
                 type="date"
                 id="checkOutDate"
                 placeholder="Check-Out"
@@ -133,9 +134,10 @@ const RoomDetails = () => {
                 Guests
               </label>
               <input
+                onChange={(e)=>setGuests(e.target.value)} value={guests}
                 type="number"
                 id="guests"
-                placeholder="0"
+                placeholder="1"
                 className="max-w-20 rounded border border-gray-300 px-3 py-2 mt-1.5 outline-none"
                 required
               ></input>
