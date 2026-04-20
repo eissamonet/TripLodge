@@ -6,18 +6,20 @@ import { useAppContext } from "../context/AppContext";
 
 const RoomDetails = () => {
   const { id } = useParams()
-  const {rooms, getTokem axiosInstance, navigate} = useAppContext();
+  const {rooms, getToken, axiosInstance, navigate} = useAppContext();
   const [room, setRoom] = useState(null);
   const [mainImage, setMainImage] = useState(null);
-  const [checkInDate, setCheckInDate] = useState('null');
-  const [checkOutDate, setCheckOutDate] = useState('null');
+  const [checkInDate, setCheckInDate] = useState(null);
+  const [checkOutDate, setCheckOutDate] = useState(null);
   const [guests, setGuests] = useState(1);
 
+  const [isAvailable, setIsAvailable] = useState(false);
+
   useEffect(() => {
-    const room = roomsDummyData.find((room) => room._id === id);
-    room && setRoom(room);
+    const room = rooms.find(room => room._id === id);
+    room && setRoom(room)
     room && setMainImage(room.images[0]);
-  }, []);
+  }, [rooms]);
 
   return (
     room && (
