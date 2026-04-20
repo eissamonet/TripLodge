@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { assets, facilityIcons, roomCommonData } from "../assets/assets";
 import StarRating from "../components/StarRating";
 import { useAppContext } from "../context/AppContext";
+import toast from "react-hot-toast";
 
 const RoomDetails = () => {
   const { id } = useParams()
@@ -14,6 +15,32 @@ const RoomDetails = () => {
   const [guests, setGuests] = useState(1);
 
   const [isAvailable, setIsAvailable] = useState(false);
+
+  // check if room is available
+  const checkAvailability = async (e)=>{
+    try {
+      // check if check in date is greater than check out date
+      if(checkInDate >= checkOutDate){
+        toast.error('Check-Out date must be greater than Check-In date')
+        return;
+      }
+      const {data} = await axiosInstance.post('/api/bookings/check-availability', {
+        room: id, checkInDate, checkOutDate})
+      if(data.success){
+        if(data.isAvailable){
+          setIsAvailable(true)
+          toast.success('Room is available! You can proceed to book now.')
+        }else{
+          setIsAvailable(false)
+          toast.error('Room is not available for the selected dates. Please try different dates.')
+        }
+      }else{
+        toast.error(data.message)
+      }
+    } catch (error) {
+      toast.error(error.message)
+    }
+  }
 
   useEffect(() => {
     const room = rooms.find(room => room._id === id);
