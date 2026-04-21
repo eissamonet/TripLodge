@@ -78,7 +78,7 @@ const MyBookings = () => {
                   />
                   <span>Guests: {booking.guests}</span>
                 </div>
-                <p className="text-base">Total: {booking.totalPrice}</p>
+                <p className="text-base">Total: ${booking.totalPrice}</p>
               </div>
             </div>
             {/* date and time */}
