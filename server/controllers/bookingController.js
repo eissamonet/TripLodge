@@ -83,10 +83,10 @@ export const createBooking = async (req, res) =>{
           <p>Thank you for booking with TripLodge! Here are your booking details:</p>
           <ul>
             <li><strong>Booking ID:</strong> ${booking._id}</li>
-            <li><strong>Hotel Name:</strong> ${booking._id}</li>
-            <li><strong>Location:</strong> ${booking._id}</li>
-            <li><strong>Date:</strong> ${booking._id}</li>
-            <li><strong>Bookin Amount:</strong> ${booking._id}</li>
+            <li><strong>Hotel Name:</strong> ${roomData.hotel.name}</li>
+            <li><strong>Location:</strong> ${roomData.hotel.address}</li>
+            <li><strong>Date:</strong> ${booking.checkInDate.toDateString()}</li>
+            <li><strong>Bookin Amount:</strong> ${process.env.CURRENCY || '$'} ${booking.totalPrice} /night</li>
           <ul>
            `
        }
