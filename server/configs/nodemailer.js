@@ -8,3 +8,5 @@ const transporter = nodemailer.createTransport({
     pass: "",
   },
 });
+
+export default transporter;
