@@ -88,6 +88,10 @@ export const createBooking = async (req, res) =>{
             <li><strong>Date:</strong> ${booking.checkInDate.toDateString()}</li>
             <li><strong>Booking Amount:</strong> ${process.env.CURRENCY || '$'} ${booking.totalPrice} /night</li>
           <ul>
+          <p>We look forward to hosting you at ${roomData.hotel.name}!</p>
+          <p>If you have any questions or need to make changes to your booking, please contact our support team.</p>
+          <p>Best regards,</p>
+          <p>TripLodge Team</p>
            `
        }
        await transporter.sendMail({})
