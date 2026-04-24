@@ -36,7 +36,7 @@ export const createRoom = async (req, res) => {
     try {
       parsedAmenities = amenities ? JSON.parse(amenities) : [];
     } catch {
-      return res.json({ success: false, message: "Invalid amenities format" });
+      return res.json({ success: false, message: "Invalid amenities formate" });
     }
 
     await Room.create({

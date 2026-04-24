@@ -39,7 +39,7 @@ export const checkAvailabilityAPI = async (req, res) =>{
 export const createBooking = async (req, res) =>{
     try {
        const { room, checkInDate, checkOutDate, guests} = req.body;
-       const user = req.user._id;
+       const user = req.auth().userId;
 
        // before booking check availability
        const isAvailable = await checkAvailability({
@@ -94,7 +94,7 @@ export const createBooking = async (req, res) =>{
           <p>TripLodge Team</p>
            `
        }
-       await transporter.sendMail({})
+       await transporter.sendMail(mailOptions);
 
        res.json({ success: true, message: "Booking created successfully"})
 
@@ -108,7 +108,7 @@ export const createBooking = async (req, res) =>{
 // get /api/bookings/user
 export const getUserBookings = async (req, res) =>{
     try {
-        const user = req.user._id;
+        const user = req.auth().userId;
 
         const bookings = (await Booking.find({user})
         .populate("room")
