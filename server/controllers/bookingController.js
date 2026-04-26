@@ -86,7 +86,7 @@ export const createBooking = async (req, res) =>{
             <li><strong>Hotel Name:</strong> ${roomData.hotel.name}</li>
             <li><strong>Location:</strong> ${roomData.hotel.address}</li>
             <li><strong>Date:</strong> ${booking.checkInDate.toDateString()}</li>
-            <li><strong>Booking Amount:</strong> ${process.env.CURRENCY || '$'} ${booking.totalPrice}</li>
+            <li><strong>Booking Total Amount:</strong> ${process.env.CURRENCY || '$'} ${booking.totalPrice}</li>
           <ul>
           <p>We look forward to hosting you at ${roomData.hotel.name}!</p>
           <p>If you have any questions or need to make changes to your booking, please contact our support team.</p>
