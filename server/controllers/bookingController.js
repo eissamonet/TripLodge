@@ -169,8 +169,19 @@ export const stripePayment = async (req, res)=>{
             quantity: 1,
         }
      ]
+     // create checkout session
+     const session = await stripeInstance.checkout.sessions.create({
+        line_items,
+        mode: "payment",
+        success_url: `${origin}/loader/my-bookings` ,
+        cancel_url: `${origin}/my-bookings`
+        metadata:{
+          bookingId,
         }
-   } catch (error) {
+    })
+    res.json({ success: true, url: session.url})
 
+   } catch (error) {
+    res.json({ success: false, message: "Payment failed"})
    }
 }
