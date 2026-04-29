@@ -29,10 +29,14 @@ const MyBookings = () => {
 
   const handlePayment = async (bookingId) => {
     try {
-      const {data} = await axiosInstance.post('/api/bookings/stripe-payment', {bookingId},{headers: {Authorization: `Bearer ${await getToken()}`}});
-      }});
+      const {data} = await axiosInstance.post('/api/bookings/stripe-payment', {bookingId},{headers: {Authorization: `Bearer ${await getToken()}`}})
+      if (data.success) {
+        window.location.href = data.url
+      }else{
+        toast.error(data.message)
+      }
     } catch (error) {
-
+      toast.error(error.message);
     }
   }
 
@@ -115,7 +119,7 @@ const MyBookings = () => {
                 </p>
               </div>
               {!booking.isPaid && (
-                <button className="px-4 py-1.5 mt-4 text-xs border border-gray-400 rounded-full hover:bg-slate-300 transition-all cursor-pointer">
+                <button onClick={() => handlePayment(booking._id)} className="px-4 py-1.5 mt-4 text-xs border border-gray-400 rounded-full hover:bg-slate-300 transition-all cursor-pointer">
                   Pay Now
                 </button>
               )}
