@@ -26,6 +26,16 @@ const MyBookings = () => {
     }
   };
 
+
+  const handlePayment = async (bookingId) => {
+    try {
+      const {data} = await axiosInstance.post('/api/bookings/stripe-payment', {bookingId},{headers: {Authorization: `Bearer ${await getToken()}`}});
+      }});
+    } catch (error) {
+
+    }
+  }
+
   useEffect(() => {
     if (user) {
       fetchUserBookings();
