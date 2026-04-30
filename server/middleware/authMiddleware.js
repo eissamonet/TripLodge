@@ -5,9 +5,8 @@ export const protect = async (req, res, next) => {
   try {
     console.log("=== PROTECT MIDDLEWARE ===")
     console.log("req.auth:", req.auth)
-    console.log("userId:", req.auth().userId)
-
     const userId = req.auth().userId;
+    console.log("userId:", userId)
 
     if (!userId) {
       console.log("❌ No userId found in req.auth")
