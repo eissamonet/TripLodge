@@ -1,4 +1,5 @@
 import stripe from 'stripe';
+import Booking from '../models/Booking';
 
 // API to handle Stripe webhooks
 
@@ -26,5 +27,7 @@ export const stripeWebhooks = async (req, res) => {
         });
 
         const { bookingId } = session.data[0].metadata;
+        // mark payment as paid
+        await Booking.findByIdAndUpdate(bookingId, {isPaid: true, paymentMethod: "Stripe"});
     }
 }
