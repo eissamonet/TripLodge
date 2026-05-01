@@ -14,4 +14,17 @@ export const stripeWebhooks = async (req, res) => {
     } catch (error) {
         response.status(400).send(`Webhook Error: ${error.message}`);
     }
+
+    // handle event
+    if(event.type === 'payment_intent.succeeded') {
+        const paymentIntent = event.data.object;
+        const paymentIntentId = paymentIntent.id;
+
+        //get session metadata
+        const session = await stripeInstance.checkout.sessions.list({
+            payment_intent: paymentIntentId,
+        });
+
+        const { bookingId } = session.data[0].metadata;
+    }
 }
