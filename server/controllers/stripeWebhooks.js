@@ -1,5 +1,6 @@
 import stripe from 'stripe';
 import Booking from '../models/Booking';
+import { response } from 'express';
 
 // API to handle Stripe webhooks
 
@@ -11,7 +12,7 @@ export const stripeWebhooks = async (req, res) => {
     let event;
 
     try {
-        event = stripeInstance.webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET);
+        event = stripeInstance.webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET)
     } catch (error) {
         response.status(400).send(`Webhook Error: ${error.message}`);
     }
@@ -32,5 +33,5 @@ export const stripeWebhooks = async (req, res) => {
     }else{
         console.log('Unhandled event type: ', event.type);
     }
-    res.json({ received: true });
+    response.json({ received: true });
 }
