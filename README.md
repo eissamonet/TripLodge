@@ -8,7 +8,7 @@ manage bookings from an admin dashboard, and receive email booking confirmations
 
 
 ## 📸 Screenshot
-![Home](screenshots/.png)
+![Home](screenshots/triplodge.png)
 
 
 ## ✨ Features
