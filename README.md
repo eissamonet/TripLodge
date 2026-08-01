@@ -7,11 +7,9 @@ manage bookings from an admin dashboard, and receive email booking confirmations
 - **Live App:** [triplodge-delta.vercel.app/](https://triplodge-delta.vercel.app/)
 
 
-## 📸 Screenshots
-![Home](screenshots/home.png)
-![Hotel Rooms](screenshots/rooms.png)
-![Booking](screenshots/booking.png)
-![Admin Dashboard](screenshots/admin.png)
+## 📸 Screenshot
+![Home](screenshots/.png)
+
 
 ## ✨ Features
 - User authentication with Clerk
