@@ -73,7 +73,7 @@ BREVO_API_KEY=your_brevo_api_key
 
 **Start the backend:**
 cd server
-npm run dev
+npm start
 
 **Start the frontend:**
 cd client
